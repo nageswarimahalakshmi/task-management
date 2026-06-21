@@ -104,19 +104,25 @@ npm run dev
 
 ---
 
+## 🔗 Live Demo
+
+- **Live Website:** [ZenTask Deployed Application](https://your-zentask-demo-link.vercel.app)
+
+---
+
 ## 📸 Screenshots
 
 #### 1. Authentication (Login & Signup screens)
-![Login Screen](./login.png)
+![Login Screen](./client/src/assets/login.png)
 
 #### 2. Kanban Board (Interactive columns with status controls)
-![Kanban Dashboard](./dashboard.png)
+![Kanban Dashboard](./client/src/assets/dashboard.png)
 
 #### 3. Task List (Search filters and sorting)
-![Task List](./list.png)
+![Task List](./client/src/assets/list.png)
 
 #### 4. Task Form (Create & Edit Dialog)
-![Task Modal](./task.png)
+![Task Modal](./client/src/assets/task.png)
 
 #### 5. Productivity Analytics (CSS gauges & category ratios)
-![Analytics Tab](./analytics.png)
+![Analytics Tab](./client/src/assets/analytics.png)
