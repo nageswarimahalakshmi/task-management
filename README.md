@@ -2,7 +2,7 @@
 
 A premium, full-stack, real-time task management web application. The project features a React frontend client and an Express/Node.js backend server connecting to MongoDB Atlas with live WebSockets sync.
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live_Preview-6366f1?style=for-the-badge)](https://your-zentask-demo-link.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Demo-Live_Preview-6366f1?style=for-the-badge)](https://task-management-maha9.vercel.app/)
 [![Vite](https://img.shields.io/badge/Vite-React-FFD600?style=for-the-badge&logo=vite)](https://vite.dev)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)](https://mongodb.com)
 
@@ -106,7 +106,7 @@ npm run dev
 
 ## 🔗 Live Demo
 
-- **Live Website:** [ZenTask Deployed Application](https://your-zentask-demo-link.vercel.app)
+- **Live Website:** [ZenTask Deployed Application](https://task-management-maha9.vercel.app/)
 
 ---
 
