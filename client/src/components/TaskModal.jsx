@@ -6,7 +6,8 @@ const TaskModal = ({ isOpen, onClose, onSubmit, taskToEdit, defaultStatus }) => 
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('Todo');
   const [priority, setPriority] = useState('Medium');
-  const [category, setCategory] = useState('General');
+  const [categorySelect, setCategorySelect] = useState('General');
+  const [customCategory, setCustomCategory] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -19,7 +20,14 @@ const TaskModal = ({ isOpen, onClose, onSubmit, taskToEdit, defaultStatus }) => 
       setDescription(taskToEdit.description || '');
       setStatus(taskToEdit.status || 'Todo');
       setPriority(taskToEdit.priority || 'Medium');
-      setCategory(taskToEdit.category || 'General');
+      const cat = taskToEdit.category || 'General';
+      if (categoryPresets.includes(cat)) {
+        setCategorySelect(cat);
+        setCustomCategory('');
+      } else {
+        setCategorySelect('Custom');
+        setCustomCategory(cat);
+      }
       
       if (taskToEdit.dueDate) {
         // Formulate date string as YYYY-MM-DD for date input
@@ -37,7 +45,8 @@ const TaskModal = ({ isOpen, onClose, onSubmit, taskToEdit, defaultStatus }) => 
       setDescription('');
       setStatus(defaultStatus || 'Todo');
       setPriority('Medium');
-      setCategory('General');
+      setCategorySelect('General');
+      setCustomCategory('');
       setDueDate('');
     }
     setError('');
@@ -58,7 +67,7 @@ const TaskModal = ({ isOpen, onClose, onSubmit, taskToEdit, defaultStatus }) => 
         description: description.trim(),
         status,
         priority,
-        category: category.trim() || 'General',
+        category: categorySelect === 'Custom' ? customCategory.trim() || 'General' : categorySelect,
         dueDate: dueDate ? new Date(dueDate).toISOString() : null,
       };
 
@@ -147,23 +156,28 @@ const TaskModal = ({ isOpen, onClose, onSubmit, taskToEdit, defaultStatus }) => 
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="task-category">Category</label>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <select
+                id="task-category"
+                className="form-control"
+                value={categorySelect}
+                onChange={(e) => setCategorySelect(e.target.value)}
+                style={{ marginBottom: categorySelect === 'Custom' ? '0.5rem' : '0' }}
+              >
+                {categoryPresets.map((cat) => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+                <option value="Custom">Custom...</option>
+              </select>
+              {categorySelect === 'Custom' && (
                 <input
-                  id="task-category"
                   type="text"
                   className="form-control"
-                  placeholder="e.g. Work, Shopping"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  style={{ flexGrow: 1 }}
-                  list="category-options"
+                  placeholder="Enter custom category..."
+                  value={customCategory}
+                  onChange={(e) => setCustomCategory(e.target.value)}
+                  required
                 />
-                <datalist id="category-options">
-                  {categoryPresets.map((cat) => (
-                    <option key={cat} value={cat} />
-                  ))}
-                </datalist>
-              </div>
+              )}
             </div>
 
             <div className="form-group">
